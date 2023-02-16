@@ -12,8 +12,8 @@ class Item:
 
         Item.num_of_items += 1
 
-    def calculate_total_price():
+    def calculate_total_price(self):
         return (self.price * self.quantity)
 
-    def apply_discount():
-        self.price = self.price * Item.discount_price
+    def apply_discount(self):
+        self.price = (self.price * Item.discount_price)
