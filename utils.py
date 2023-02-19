@@ -14,13 +14,22 @@ class Item:
 
         Item.num_of_items.append(self.__name)
 
-    # @name.setter
-    # def name(self, name : str):
-    #     if len(self.__name) > 10:
-    #         raise Exception('Длина наименования товара превышает 10 символов.')
-    #     else:
-    #         self.__name = name
+    @property
+    def name(self, name=None):
+        if name == None:
+            return self.__name
+        else:
+            self.__name = name
+            return self.__name
 
+
+
+    @name.setter
+    def name(self, name : str):
+        if len(name) > 10:
+             raise Exception('Длина наименования товара превышает 10 символов.')
+        else:
+             self.__name = name
 
 
 
