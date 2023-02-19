@@ -1,11 +1,10 @@
 from utils import Item
 
-item1 = Item("Смартфон", 10000, 20)
-item2 = Item("Ноутбук", 20000, 5)
+Item.load_from_csv('items.csv')  # создание объектов из данных файла
+print(len(Item.num_of_items))  # в файле 5 записей с данными по товарам
+print(Item.num_of_items[4])
+item1 = Item.num_of_items[0]
+print(item1)
 
-print(item1.calculate_total_price(), '- общая стоимость смартфонов')
-print(item2.calculate_total_price(), '- общая стоимость ноутбуков')
-
-item1.name = 'СуперСмартфон'
-print(item1.name)
-print(Item.num_of_items)
+test_item = Item("Смартфон", 10000, 10)
+test_item.name = 'ДлинаСмартфон'
