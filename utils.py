@@ -2,17 +2,21 @@ import csv
 
 class Item:
 
-    num_of_items = []
-    discount_price = 1
+    num_of_items = []  #общий спсисок предметов
+    discount_price = 1 #ставка
 
     def __init__(self, name, price, quantity):
         self.__name = name
         self.price = price
         self.quantity = quantity
 
-
-
         Item.num_of_items.append(self.__name)
+
+    def __repr__(self):
+        return f'{self.__class__.__name__}("{self.__name}", {self.price}, {self.quantity})'
+
+    def __str__(self):
+        return self.__name
 
     @property
     def name(self, name=None):
