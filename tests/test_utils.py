@@ -24,6 +24,14 @@ def test_name_setter():
     test_item.name = 'Длина'
     assert test_item.name == 'Длина'
 
-# def test_raises():
-#     with pytest.raises(Exception):
-#         raise Exception('Длина наименования товара превышает 10 символов.')
+def test_str():
+    test_item = Item("Смартфон", 10000, 10)
+    assert test_item == 'Item("Смартфон", 10000, 10)'
+
+# @pytest.fixture
+# def item_test():
+#     return Item(name='ТОВАРТОВАРТОВАР', price=10000, quantity=20)
+
+ # def test_raises(item_test):
+ #     with pytest.raises(Exception):
+ #         item_test.name = 'Длина наименования товара превышает 10 символов.'
