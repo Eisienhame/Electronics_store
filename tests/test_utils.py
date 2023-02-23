@@ -24,14 +24,12 @@ def test_name_setter():
     test_item.name = 'Длина'
     assert test_item.name == 'Длина'
 
-def test_str():
-    test_item = Item("Смартфон", 10000, 10)
-    assert test_item == 'Item("Смартфон", 10000, 10)'
+def test_repr(item_test):
+    assert repr(item_test) == 'Item("ТОВАР", 10000, 20)'
 
-# @pytest.fixture
-# def item_test():
-#     return Item(name='ТОВАРТОВАРТОВАР', price=10000, quantity=20)
+def test_str(item_test):
+    assert str(item_test) == 'ТОВАР'
 
- # def test_raises(item_test):
- #     with pytest.raises(Exception):
- #         item_test.name = 'Длина наименования товара превышает 10 символов.'
+def test_raises(item_test2):
+    with pytest.raises(Exception):
+         item_test.name = 'Длина наименования товара превышает 10 символов.'
