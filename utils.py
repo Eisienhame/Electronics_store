@@ -18,6 +18,14 @@ class Item:
     def __str__(self):
         return self.__name
 
+    def __add__(self, other):
+#        if ((isinstance(self, Item) or issubclass(self.__class__, Item)) is True) and ((issubclass(other.__class__, Item) or isinstance(other, Item)) is True):
+        if self.__class__ == other.__class__:
+            return int(self.quantity) + int(other.quantity)
+        else:
+            return 'Сложение запрещено'
+
+
     @property
     def name(self, name=None):
         if name == None:
@@ -56,3 +64,26 @@ class Item:
 
     def apply_discount(self):
         self.price = (self.price * Item.discount_price)
+
+class Phone(Item):
+    def __init__(self, name, price, quantity, number_of_sim):
+        self.sim_count = number_of_sim
+        super().__init__(name, price, quantity)
+
+    def __repr__(self):
+        return f'{self.__class__.__name__}("{self.__name}", {self.price}, {self.quantity}), {self.number_of_sim}'
+
+    @property
+    def number_of_sim(self, number_of_sim=None):
+        if number_of_sim == None:
+            return self.number_of_sim
+        else:
+            self.number_of_sim = number_of_sim
+            return self.number_of_sim
+
+    @number_of_sim.setter
+    def number_of_sim(self, number_of_sim):
+        if number_of_sim < 1:
+            raise ValueError('Количество физических SIM-карт должно быть целым числом больше нуля.')
+        else:
+             self.number_of_sim = number_of_sim
