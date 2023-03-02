@@ -1,6 +1,6 @@
 import pytest
 
-from utils import Item
+from utils import Item, Phone
 
 
 
@@ -32,4 +32,16 @@ def test_str(item_test):
 
 def test_raises(item_test2):
     with pytest.raises(Exception):
-         item_test.name = 'Длина наименования товара превышает 10 символов.'
+         item_test2.name = 'Длина наименования товара превышает 10 символов.'
+
+def test_phone_number_of_sim():
+    test_item = Phone("Смартфон", 10000, 10, 2)
+    test_item2 = Phone("Смартфон2", 10000, 3, 2)
+    test_item3 = Item("Смартфон", 10000, 10)
+    assert test_item.number_of_sim == 2
+    assert test_item + test_item2 == 13
+    assert test_item3 + test_item2 == 'Сложение запрещено'
+
+def test_value(item_test3):
+    with pytest.raises(Exception):
+         item_test3.name = 'Количество физических SIM-карт должно быть целым числом больше нуля.'
