@@ -87,3 +87,25 @@ class Phone(Item):
             raise ValueError('Количество физических SIM-карт должно быть целым числом больше нуля.')
         else:
              self.__number_of_sim = number_of_sim
+
+
+class Mixin_lang:
+    def __init__(self):
+        self.__language = 'EN'
+
+    def change_lang(self):
+        if self.__language == 'EN':
+            self.__language = 'RU'
+        else:
+            self.__language = 'EN'
+
+    @property
+    def language(self, language=None):
+        if language == None:
+            return self.__language
+        else:
+            raise AttributeError("property 'language' of 'KeyBoard' object has no setter")
+class Keyboard(Item, Mixin_lang):
+    def __init__(self, name, price, quantity):
+        super().__init__(name, price, quantity)
+        self._Mixin_lang__language = 'EN'
