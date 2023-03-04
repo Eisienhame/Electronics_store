@@ -1,6 +1,6 @@
 import pytest
 
-from utils import Item, Phone
+from utils import Item, Phone, Keyboard
 
 
 
@@ -45,3 +45,7 @@ def test_phone_number_of_sim():
 def test_value(item_test3):
     with pytest.raises(Exception):
          item_test3.name = 'Количество физических SIM-карт должно быть целым числом больше нуля.'
+
+def test_langage(item_test4):
+    item_test4.change_lang()
+    assert item_test4.language == 'RU'
