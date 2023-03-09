@@ -10,4 +10,4 @@ print(kb.language)
 kb.change_lang()
 print(kb.language)
 
-kb.language = 'CH'
+b = Item.load_from_csv('items.csv')
