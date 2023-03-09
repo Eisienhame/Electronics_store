@@ -1,5 +1,5 @@
 import csv
-
+from errors import InstantiateCSVError
 class Item:
 
     num_of_items = []  #общий спсисок предметов
@@ -19,7 +19,6 @@ class Item:
         return self.__name
 
     def __add__(self, other):
-#        if ((isinstance(self, Item) or issubclass(self.__class__, Item)) is True) and ((issubclass(other.__class__, Item) or isinstance(other, Item)) is True):
         if self.__class__ == other.__class__:
             return int(self.quantity) + int(other.quantity)
         else:
@@ -45,12 +44,21 @@ class Item:
 
     @classmethod
     def load_from_csv(cls, data):
-        with open(data) as file:
-            csv_table = csv.DictReader(file)
-            for row in csv_table:
-                cls(name = row['name'],
-                    price = float(row['price']),
-                     quantity = int(row['quantity']))
+        try:
+            with open(data) as file:
+                csv_table = csv.DictReader(file)
+                for row in csv_table:
+                     if list(row.keys()) == ['name', 'price', 'quantity']:
+                         cls(name = row['name'],
+                            price = float(row['price']),
+                             quantity = int(row['quantity']))
+                     else:
+                         raise InstantiateCSVError
+        except FileNotFoundError:
+            print(f"По указанному пути файл '{data}' отсутствует")
+        except InstantiateCSVError:
+            print(f"Файл '{data}' поврежден")
+
     @staticmethod
     def is_int(number):
         if isinstance(number, int) or isinstance(number, float) and number % 1 == 0:
