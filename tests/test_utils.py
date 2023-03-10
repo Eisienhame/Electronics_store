@@ -19,6 +19,11 @@ def test_load_from_csv():
     Item.load_from_csv('items.csv')
     assert len(Item.num_of_items) == 6
     assert Item.num_of_items[0] == 'Смартфон'
+
+def test_get_file_not_found_error():
+    "Test исключения FileNotFoundError в связи с отсутствием файла"""
+    b = Item.load_from_csv('irtems.csv')
+    assert Item.load_from_csv() == print(f"По указанному пути файл '{data}' отсутствует")
 def test_name_setter():
     test_item = Item("Смартфон", 10000, 10)
     test_item.name = 'Длина'
@@ -49,3 +54,4 @@ def test_value(item_test3):
 def test_langage(item_test4):
     item_test4.change_lang()
     assert item_test4.language == 'RU'
+
