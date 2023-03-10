@@ -22,8 +22,8 @@ def test_load_from_csv():
 
 def test_get_file_not_found_error():
     "Test исключения FileNotFoundError в связи с отсутствием файла"""
-    b = Item.load_from_csv('irtems.csv')
-    assert Item.load_from_csv() == print(f"По указанному пути файл '{data}' отсутствует")
+    Item.load_from_csv('irtems.csv')
+    assert Item.load_from_csv('irtems.csv') == print(f"По указанному пути файл irtems.csv отсутствует")
 def test_name_setter():
     test_item = Item("Смартфон", 10000, 10)
     test_item.name = 'Длина'
